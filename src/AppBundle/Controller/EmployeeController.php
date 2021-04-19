@@ -45,12 +45,12 @@ class EmployeeController extends Controller
     {
         $employee = new Employee();
         $form = $this->createForm('AppBundle\Form\EmployeeType', $employee);
-        $form->handleRequest($request);
+        $form->handleRequest($request); //Postメソッドに空のプロパティが一つ一つセットされてる。
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
-            $em->flush();
+            $em->flush(); //トランザクション実行　保存
 
             return $this->redirectToRoute('employee_show', array('id' => $employee->getId()));
         }

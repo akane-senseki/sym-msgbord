@@ -1,51 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Employees list</h1>
+	<h2>従業員一覧</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>Adminflag</th>
-                <th>Deleteflag</th>
-                <th>Createdat</th>
-                <th>Updateat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for employee in employees %}
-            <tr>
-                <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
-                <td>{{ employee.code }}</td>
-                <td>{{ employee.name }}</td>
-                <td>{{ employee.password }}</td>
-                <td>{{ employee.adminFlag }}</td>
-                <td>{{ employee.deleteFlag }}</td>
-                <td>{% if employee.createdAt %}{{ employee.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if employee.updateAt %}{{ employee.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('employee_show', { 'id': employee.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('employee_new') }}">Create a new employee</a>
-        </li>
-    </ul>
+	<table id="employee_list">
+		<thead>
+			<tr>
+				<th>社員番号</th>
+				<th>氏名</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for employee in employees %}
+				<tr>
+					<td>{{ employee.code }}</td>
+					<td>
+						<a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.name }}</a>
+					</td>
+					{% if  employee.deleteFlag  == 1  %}
+						<td>
+							<ul>
+								<li><ahref="{{path('employee_show',{'id':employee.id})}}">詳細</a></li>
+								<li><ahref="{{path('employee_edit',{'id':employee.id})}}">編集</a></li>
+							</ul>
+						</td>
+					{% else %}
+						<td>削除済</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<ul>
+		<li><ahref="{{ path('employee_new') }}">従業員を新規登録する</a></li>
+	</ul>
 {% endblock %}
