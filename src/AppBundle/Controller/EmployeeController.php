@@ -48,6 +48,10 @@ class EmployeeController extends Controller
         $form->handleRequest($request); //Postメソッドに空のプロパティが一つ一つセットされてる。
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $employee->setCreatedAt(new \DateTime("now"));
+            $employee->setUpdateAt(new \DateTime("now"));
+            $employee->setDeleteFlag(0);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
             $em->flush(); //トランザクション実行　保存

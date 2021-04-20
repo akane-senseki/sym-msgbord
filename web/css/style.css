@@ -82,3 +82,12 @@ table#employee_list td {
     width: 29%;
     padding: 10px 2%;
 }
+select {
+    height: 30px;
+}
+label{
+    display: block;
+}
+input{
+    margin-bottom:20px;
+}

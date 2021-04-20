@@ -61,7 +61,6 @@ class Employee
      * @var int
      *
      * @ORM\Column(name="delete_flag", type="integer")
-     * @Assert\NotBlank()
      */
     private $deleteFlag;
 
@@ -69,7 +68,6 @@ class Employee
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
-     * @Assert\NotBlank()
      */
     private $createdAt;
 
@@ -77,7 +75,6 @@ class Employee
      * @var \DateTime
      *
      * @ORM\Column(name="update_at", type="datetime")
-     * @Assert\NotBlank()
      */
     private $updateAt;
 
